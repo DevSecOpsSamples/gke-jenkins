@@ -21,8 +21,7 @@ build
 service-account.json
 
 # k8s
-bucket-api.yaml
-pubsub-api.yaml
+jenkins-master.yaml
 
 
 # Byte-compiled / optimized / DLL files
