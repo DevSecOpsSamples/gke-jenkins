@@ -64,6 +64,9 @@ LB_IP_ADDRESS=$(gcloud compute forwarding-rules list | grep jenkins-master | awk
 echo ${LB_IP_ADDRESS}
 ```
 
+```bash
+curl http://${LB_IP_ADDRESS}/
+```
 
 ## Cleanup
 
