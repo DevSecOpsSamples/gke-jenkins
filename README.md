@@ -41,7 +41,7 @@ gcloud container clusters get-credentials jenkins
 
 ## Step2: Deploy jenkins-master
 
-Create and deploy K8s Deployment, Service, Ingress, and GKE BackendConfig using a template file.
+Create and deploy K8s Deployment, Service, Volume, Ingress, and GKE BackendConfig using a template file.
 
 ```bash
 sed -e "s|<project-id>|${PROJECT_ID}|g" jenkins-master-template.yaml > jenkins-master.yaml
