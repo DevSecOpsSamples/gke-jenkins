@@ -1,6 +1,6 @@
 # Jenkins on GKE
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=DevSecOpsSamples_gke-workload-identity&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=DevSecOpsSamples_gke-workload-identity) [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=DevSecOpsSamples_gke-workload-identity&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=DevSecOpsSamples_gke-workload-identity)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=DevSecOpsSamples_gke-jenkins&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=DevSecOpsSamples_gke-jenkins) [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=DevSecOpsSamples_gke-jenkins&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=DevSecOpsSamples_gke-jenkins)
 
 ## Overview
 
