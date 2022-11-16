@@ -14,7 +14,6 @@
 ### Installation
 
 - [Install the gcloud CLI](https://cloud.google.com/sdk/docs/install)
-- [Install gsutil](https://cloud.google.com/storage/docs/gsutil_install#install)
 - [Install kubectl and configure cluster access](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl)
 
 ### Set environment variables
