@@ -23,6 +23,20 @@ service-account.json
 # k8s
 jenkins-master.yaml
 
+# terraform
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+*.tfvars
+*.tfvars.json
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
