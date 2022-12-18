@@ -1,0 +1,113 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins-master
+  namespace: default
+  annotations:
+    app: 'jenkins-master'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jenkins-master
+  template:
+    metadata:
+      labels:
+        app: jenkins-master
+    spec:
+      containers:
+        - name: jenkins-master
+          image: gcr.io/<project-id>/jenkins-master:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              cpu: 4
+              memory: "1024Mi"
+          volumeMounts:
+            - name: jenkins-vol
+              mountPath: /var/jenkins_home
+          env:
+          - name: env
+            value: "dev"
+      volumes:
+        - name: jenkins-vol
+          persistentVolumeClaim:
+            claimName: jenkins-master-vc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jenkins-master
+  annotations:
+    app: 'jenkins-master'
+    cloud.google.com/backend-config: '{"default": "jenkins-master-backendconfig"}'
+spec:
+  selector:
+    app: jenkins-master
+  type: ClusterIP
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: "jenkins-master-ingress"
+  namespace: default
+  annotations:
+    app: 'jenkins-master'
+    kubernetes.io/ingress.class: gce
+spec:
+  rules:
+  - http:
+        paths:
+          - path: /*
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: jenkins-master
+                port:
+                  number: 8080
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: jenkins-master-backendconfig
+spec:
+  healthCheck:
+    checkIntervalSec: 30
+    timeoutSec: 30
+    healthyThreshold: 1
+    unhealthyThreshold: 5
+    port: 8080
+    type: HTTP
+    requestPath: /login
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: jenkins-master-storage
+provisioner: kubernetes.io/gce-pd
+volumeBindingMode: Immediate
+allowVolumeExpansion: true
+reclaimPolicy: Delete
+parameters:
+  type: pd-standard
+  fstype: ext4
+  replication-type: none
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jenkins-master-vc
+spec:
+  storageClassName: jenkins-master-storage
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Gi
