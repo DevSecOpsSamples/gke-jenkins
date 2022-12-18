@@ -4,10 +4,7 @@
 
 ## Overview
 
-## Objectives
-
-## Table of Contents
-
+Build Jenkins with plugins on GKE
 
 ## Prerequisites
 
