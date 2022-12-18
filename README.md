@@ -1,10 +1,10 @@
 # Jenkins on GKE
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=DevSecOpsSamples_gke-jenkins&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=DevSecOpsSamples_gke-jenkins) [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=DevSecOpsSamples_gke-jenkins&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=DevSecOpsSamples_gke-jenkins)
+[![Build](https://github.com/DevSecOpsSamples/gke-jenkins/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/DevSecOpsSamples/gke-jenkins/actions/workflows/build.yml) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=DevSecOpsSamples_gke-jenkins&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=DevSecOpsSamples_gke-jenkins) [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=DevSecOpsSamples_gke-jenkins&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=DevSecOpsSamples_gke-jenkins)
 
 ## Overview
 
-Build Jenkins with plugins on GKE
+Build Jenkins with plugins on GKE. Refer to the Pipelines with `podTemplate` in https://github.com/DevSecOpsSamples/jenkins-pipeline.
 
 ## Prerequisites
 
@@ -32,8 +32,8 @@ gcloud config set compute/zone ${COMPUTE_ZONE}
 Create an Autopilot GKE cluster. It may take around 9 minutes.
 
 ```bash
-gcloud container clusters create-auto jenkins --region=${COMPUTE_ZONE}
-gcloud container clusters get-credentials jenkins
+gcloud container clusters create-auto jenkins-dev --region=${COMPUTE_ZONE}
+gcloud container clusters get-credentials jenkins-dev
 ```
 
 ## Step2: Deploy jenkins-master
@@ -78,3 +78,5 @@ docker system prune -a
 ## References
 
 * https://hub.docker.com/_/jenkins
+
+* https://www.jenkins.io/doc/pipeline/steps/kubernetes/
