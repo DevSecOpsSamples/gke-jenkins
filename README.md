@@ -19,8 +19,8 @@
 ### Set environment variables
 
 ```bash
-PROJECT_ID="sample-project" # replace with your project
 COMPUTE_ZONE="us-central1"
+PROJECT_ID="sample-project" # replace with your project
 ```
 
 ### Set GCP project
@@ -79,3 +79,5 @@ docker system prune -a
 ```
 
 ## References
+
+* https://hub.docker.com/_/jenkins
