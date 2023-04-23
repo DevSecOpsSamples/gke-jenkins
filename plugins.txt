@@ -17,7 +17,7 @@ kubernetes:3923.v294a_d4250b_91
 google-login:1.7
 slack:664.vc9a_90f8b_c24a_
 gradle:1.39.4
-maven-plugin:3.19
+maven-plugin:3.21
 nodejs:1.5.1
 git:4.11.3
 git-client:3.11.2
