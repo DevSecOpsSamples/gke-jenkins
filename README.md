@@ -127,6 +127,7 @@ curl http://${LB_IP_ADDRESS}/
 ```bash
 kubectl delete -f jenkins-master.yaml -n jenkins-${ENV}
 kubectl delete namespace jenkins-${ENV}
+gcloud iam service-accounts delete "${SERVICE_ACCOUNT}@${PROJECT_ID}.iam.gserviceaccount.com" 
 ```
 
 ```bash
