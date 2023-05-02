@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: jenkins-master
-  namespace: default
+  namespace: jenkins-dev
   annotations:
     app: 'jenkins-master'
 spec:
@@ -24,8 +24,8 @@ spec:
             - containerPort: 8080
           resources:
             requests:
-              cpu: 4
-              memory: "1024Mi"
+              cpu: 1
+              memory: "2048Mi"
           volumeMounts:
             - name: jenkins-vol
               mountPath: /var/jenkins_home
@@ -41,6 +41,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: jenkins-master
+  namespace: jenkins-dev
   annotations:
     app: 'jenkins-master'
     cloud.google.com/backend-config: '{"default": "jenkins-master-backendconfig"}'
@@ -57,7 +58,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: "jenkins-master-ingress"
-  namespace: default
+  namespace: jenkins-dev
   annotations:
     app: 'jenkins-master'
     kubernetes.io/ingress.class: gce
@@ -77,6 +78,7 @@ apiVersion: cloud.google.com/v1
 kind: BackendConfig
 metadata:
   name: jenkins-master-backendconfig
+  namespace: jenkins-dev
 spec:
   healthCheck:
     checkIntervalSec: 30
@@ -91,6 +93,7 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: jenkins-master-storage
+  namespace: jenkins-dev
 provisioner: kubernetes.io/gce-pd
 volumeBindingMode: Immediate
 allowVolumeExpansion: true
@@ -104,6 +107,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: jenkins-master-vc
+  namespace: jenkins-dev
 spec:
   storageClassName: jenkins-master-storage
   accessModes:
