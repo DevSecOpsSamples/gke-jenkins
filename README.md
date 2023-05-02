@@ -8,11 +8,12 @@ Build Jenkins with plugins on GKE. Refer to the Pipelines with `podTemplate` in 
 
 ## Table of Contents
 
+
 - [Prerequisites](#prerequisites)
 - [Step1: Create a GKE cluster](#step1-create-a-gke-cluster)
-- [Step2: Create a GCP service account and Kubernetes service account](#step2-create-kubernetes-namespaces-and-service-accounts)
-- [Step3: Build a Dokcer image](#step3-iam-service-account-for-bucket-api)
-- [Step4: Deploy the jenkins-master](#step4-deploy-bucket-api)
+- [Step2: Create a GCP service account and Kubernetes service account](#step2-create-a-gcp-service-account-and-kubernetes-service-account)
+- [Step3: Build a Dokcer image](#step3-build-a-dokcer-image)
+- [Step4: Deploy the jenkins-master](#step4-deploy-the-jenkins-master)
 - [Cleanup](#cleanup)
 
 ## Prerequisites
