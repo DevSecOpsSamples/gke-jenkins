@@ -6,6 +6,15 @@
 
 Build Jenkins with plugins on GKE. Refer to the Pipelines with `podTemplate` in https://github.com/DevSecOpsSamples/jenkins-pipeline.
 
+## Table of Contents
+
+- [Prerequisites](#prerequisites)
+- [Step1: Create a GKE cluster](#step1-create-a-gke-cluster)
+- [Step2: Create a GCP service account and Kubernetes service account](#step2-create-kubernetes-namespaces-and-service-accounts)
+- [Step3: Build a Dokcer image](#step3-iam-service-account-for-bucket-api)
+- [Step4: Deploy the jenkins-master](#step4-deploy-bucket-api)
+- [Cleanup](#cleanup)
+
 ## Prerequisites
 
 ### Installation
@@ -18,8 +27,9 @@ Before you begin, you need to install the following:
 ### Set environment variables
 
 ```bash
+# echo "export PROJECT_ID=<your-project-id>" >> ~/.bashrc
+PROJECT_ID="<your-project-id>"
 COMPUTE_ZONE="us-central1"
-PROJECT_ID="sample-project" # replace with your project
 ENV="dev"
 ```
 
@@ -100,7 +110,7 @@ kubectl describe pods jenkins-master -n jenkins-${ENV}
 kubectl logs -l app=jenkins-master -n jenkins-${ENV}
 ```
 
-## Connect to Jenkins
+### Connect to Jenkins
 
 ```bash
 LB_IP_ADDRESS=$(gcloud compute forwarding-rules list | grep jenkins-master | awk '{ print $2 }')
