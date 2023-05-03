@@ -25,8 +25,8 @@ spec:
             - containerPort: 8080
           resources:
             requests:
-              cpu: 1
-              memory: "2048Mi"
+              cpu: 4
+              memory: "4096Mi"
           volumeMounts:
             - name: jenkins-vol
               mountPath: /var/jenkins_home
