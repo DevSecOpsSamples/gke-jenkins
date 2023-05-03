@@ -16,6 +16,7 @@ spec:
       labels:
         app: jenkins-master
     spec:
+      serviceAccountName: jenkins-worker
       containers:
         - name: jenkins-master
           image: gcr.io/<project-id>/jenkins-master:v1
