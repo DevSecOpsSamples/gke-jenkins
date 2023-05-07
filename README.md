@@ -59,8 +59,18 @@ echo "PROJECT_ID: ${PROJECT_ID}, ENV: ${ENV}, SERVICE_ACCOUNT: ${SERVICE_ACCOUNT
 
 ```bash
 gcloud iam service-accounts create ${SERVICE_ACCOUNT} --display-name="Jenkins service account for workload identity"
+
+gcloud iam service-accounts add-iam-policy-binding \
+       --role roles/iam.workloadIdentityUser \
+       --member "serviceAccount:${PROJECT_ID}.svc.id.goog[jenkins-${ENV}/jenkins-worker]" \
+       ${SERVICE_ACCOUNT}@${PROJECT_ID}.iam.gserviceaccount.com
+
+
 kubectl create namespace jenkins-${ENV}
 kubectl create serviceaccount --namespace jenkins-${ENV} ${SERVICE_ACCOUNT}
+```
+
+```bash
 ```
 
 ```bash
@@ -96,15 +106,17 @@ cat jenkins-master.yaml
 ```bash
 echo "PROJECT_ID: ${PROJECT_ID}, ENV: ${ENV}, SERVICE_ACCOUNT: ${SERVICE_ACCOUNT}"
 kubectl get namespaces
-# In general, namespace use the suffix per stage such as jenkins-dev, jenkins-stg nad jenkins-prod. You HAVE TO check the namespace with 'kubectl get namespaces' command before apexecuting the command.
+# In general, namespace use the suffix per stage such as jenkins-dev, jenkins-stg and jenkins-prod. You HAVE TO check the namespace with 'kubectl get namespaces' command before apexecuting the command.
 kubectl apply -f jenkins-master.yaml --dry-run=server -n jenkins-${ENV}
 ```
+
+Deploy the jenkins-master:
 
 ```bash
 kubectl apply -f jenkins-master.yaml -n jenkins-${ENV}
 ```
 
-Confirm Jenkins credential from logs:
+Confirm the Jenkins credential from logs:
 
 ```bash
 kubectl describe pods jenkins-master -n jenkins-${ENV}
@@ -121,6 +133,18 @@ echo ${LB_IP_ADDRESS}
 ```bash
 curl http://${LB_IP_ADDRESS}/
 ```
+
+### Configure Clouds and PodTemplate for Jenkins Slave
+
+```bash
+gcloud container clusters describe jenkins-${ENV} --region=${COMPUTE_ZONE}
+```
+
+Configure Clouds in the `Manage Jenkins > Configure Clouds` menu.
+
+- Kubernetes URL: cluster public endpoint with ‘Disable https certificate check’
+- Kubernetes Namespace: jenkins-{env}
+- Credentials: credential which was created using ‘Google Service Account from metadata’
 
 ## Cleanup
 
