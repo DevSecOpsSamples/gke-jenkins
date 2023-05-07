@@ -16,16 +16,18 @@ spec:
       labels:
         app: jenkins-master
     spec:
+      serviceAccountName: jenkins-worker
       containers:
         - name: jenkins-master
           image: gcr.io/<project-id>/jenkins-master:v1
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
+            - containerPort: 50000
           resources:
             requests:
-              cpu: 1
-              memory: "2048Mi"
+              cpu: 4
+              memory: "4096Mi"
           volumeMounts:
             - name: jenkins-vol
               mountPath: /var/jenkins_home
@@ -50,9 +52,13 @@ spec:
     app: jenkins-master
   type: ClusterIP
   ports:
-    - port: 8080
+    - name: http
+      port: 8080
       targetPort: 8080
       protocol: TCP
+    - name: jnlp
+      port: 50000
+      targetPort: 50000
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
