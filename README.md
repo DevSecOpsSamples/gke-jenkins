@@ -152,6 +152,7 @@ Configure Clouds in the `Manage Jenkins > Configure Clouds` menu.
 kubectl delete -f jenkins-master.yaml -n jenkins-${ENV}
 kubectl delete namespace jenkins-${ENV}
 gcloud iam service-accounts delete "${SERVICE_ACCOUNT}@${PROJECT_ID}.iam.gserviceaccount.com" 
+gcloud config unset project
 ```
 
 ```bash
