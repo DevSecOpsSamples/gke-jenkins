@@ -13,19 +13,19 @@ pipeline-build-step:488.v8993df156e8d
 pipeline-github-lib:42.v0739460cda_c4
 pipeline-graph-analysis:202.va_d268e64deb_3
 pipeline-milestone-step:111.v449306f708b_7
-kubernetes:3923.v294a_d4250b_91
+kubernetes:3937.vd7b_82db_e347b_
 google-login:1.7
 google-oauth-plugin:1.0.8
 role-strategy:631.va_dd0d500b_fc5
-configuration-as-code:1625.v27444588cc3d
+configuration-as-code:1646.v98b_72d209775
 slack:664.vc9a_90f8b_c24a_
 gradle:1.39.4
 maven-plugin:3.21
-junit:1198.ve38db_d1b_c975
+junit:1207.va_09d5100410f
 copyartifact:698.v393f578eb_ddc
 nodejs:1.6.0
-git:5.0.0
-git-client:4.2.0
+git:5.0.1
+git-client:4.3.0
 git-server:99.va_0826a_b_cdfa_d
 github:1.34.5
 github-api:1.303-417.ve35d9dd78549
@@ -41,22 +41,22 @@ javax-mail-api:1.6.2-7
 timestamper:1.18
 ws-cleanup:0.42
 
+
+# Jenkins internal
+
+bootstrap5-api:5.2.3-1
+# Matrix Authorization Strategy
+matrix-auth:3.1.8
+workflow-cps:3673.v5b_dd74276262
+
 # Folders Plugin
 # OWASP Markup Formatter
 # Build Timeout
 # Credentials Binding Plugin
-# Timestamper
-# Workspace Cleanup
-# Ant
-# Gradle
-# Pipeline
 # GitHub Branch Source
 # Pipeline: GitHub Groovy Libraries
 # Pipeline: Stage View Plugin
-# Git plugin
 # SSH Build Agents
-# Matrix Authorization Strategy
 # PAM Authentication
-# LDAP
 # Email Extension
 # Mailer Plugin
