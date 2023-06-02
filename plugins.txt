@@ -16,6 +16,7 @@ pipeline-milestone-step:111.v449306f708b_7
 kubernetes:3937.vd7b_82db_e347b_
 google-login:1.7
 google-oauth-plugin:1.0.8
+gcp-secrets-manager-credentials-provider:0.3.1
 role-strategy:631.va_dd0d500b_fc5
 configuration-as-code:1646.v98b_72d209775
 slack:664.vc9a_90f8b_c24a_
